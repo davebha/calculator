@@ -37,17 +37,7 @@ export default function App() {
 
     const handleClick = (number, type) => {
 
-        //console.log(type);
 
-        //const [operation, setOperation] = useState('');
-        //const [buttonClickType, setButtonClickType] = useState("");
-
-        // console.log("inside if " + number + "& " + buttonClickType);
-
-        //setOperation(OP_SIGN[number]);
-        //displayValues.push(OP_SIGN[number]);
-
-        //setButtonClickType(type);
 
         if (type == "digit") {
 
