@@ -41,8 +41,13 @@ export default function App() {
 
         if (type == "digit") {
 
-            if (displayValues.length >= 1 && number != 0) {
-                setDisplayValues([...displayValues, number]);
+            if (number != 0) {
+
+                if (displayValues.length == 1 && displayValues.includes(0)) {
+                    setDisplayValues([number]);
+                } else {
+                    setDisplayValues([...displayValues, number]);
+                }
             } else {
                 setDisplayValues([number]);
             }
