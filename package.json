@@ -1,0 +1,48 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "babel": {
+    "plugins": [
+      "css-modules-transform"
+    ]
+  },
+  "dependencies": {
+    "-": "0.0.1",
+    "@babel/core": "^7.11.0",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-css-modules-transform": "^1.6.2",
+    "express": "^4.17.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "save-dev": "0.0.1-security",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.2.2",
+    "chokidar": "^3.4.1",
+    "css-loader": "^4.2.0",
+    "eslint": "^7.6.0",
+    "eslint-plugin-react": "^7.20.5",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "jest": "^26.2.2",
+    "nodemon": "^2.0.4",
+    "react-test-renderer": "^16.13.1",
+    "style-loader": "^1.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-server": "nodemon --exec babel-node src/server/server.js --ignore dist/",
+    "dev-bundle": "webpack -w -d"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
