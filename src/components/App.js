@@ -48,7 +48,11 @@ export default function App() {
 
                 if (displayValues.includes("0")) {
 
-                    setDisplayValues(valueCopy);
+                    if (number != 0) {
+
+                        setDisplayValues([strNumber]);
+
+                    }
 
                 } else {
                     // console.log(valueCopy);
@@ -59,10 +63,8 @@ export default function App() {
 
             } else {
 
-                if (lastValue.type == "operation") {
 
-                }
-                setDisplayValues([strNumber]);
+
             }
 
         } else if (type == "operation") {
