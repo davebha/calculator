@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import utils from './utils';
 import '../styles/index.css';
 
-const OP_SIGN = ['+', '-', '/', '*', '='];
+const OP_SIGN = ["+", "-", "/", "*", "="];
 
 const DigitGrid = props => {
     //const componentType = props.type;
@@ -13,7 +13,6 @@ const DigitGrid = props => {
 };
 
 const OperationGrid = props => {
-
 
     return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{OP_SIGN[props.number]}</button>;
 
@@ -37,19 +36,21 @@ export default function App() {
 
     const handleClick = (number, type) => {
 
-
-
+        const lastValue = displayValues[displayValues.length - 1];
         if (type == "digit") {
 
             if (number != 0) {
 
                 if (displayValues.length == 1 && displayValues.includes(0)) {
-                    setDisplayValues([number]);
+                    setDisplayValues([String(number)]);
                 } else {
-                    setDisplayValues([...displayValues, number]);
+                    if (displayValues.length == 1 && parseInt(lastValue).isNaNllllllc) {
+
+                    }
+                    setDisplayValues([...displayValues, String(number)]);
                 }
             } else {
-                setDisplayValues([number]);
+                setDisplayValues([String(number)]);
             }
 
 
