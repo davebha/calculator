@@ -31,27 +31,39 @@ export default function App() {
 
 
 
-    const [displayValues, setDisplayValues] = useState([0]);
+    const [displayValues, setDisplayValues] = useState(["0"]);
 
 
     const handleClick = (number, type) => {
 
-        const lastValue = displayValues[displayValues.length - 1];
+        //const lastValue = displayValues[displayValues.length - 1];
+
+        //const valueToConcat = 0;
+        const valueCopy = Array.from(displayValues);
+        const lastValueIndex = arrayCopy[arrayCopy.length - 1];
+        const strNumber = String(number);
         if (type == "digit") {
 
-            if (number != 0) {
+            if (displayValues.length == 1) {
 
-                if (displayValues.length == 1 && displayValues.includes(0)) {
-                    setDisplayValues([String(number)]);
+                if (displayValues.includes("0")) {
+
+                    setDisplayValues(valueCopy);
+
                 } else {
-
-
-                    setDisplayValues([...displayValues, String(number)]);
+                    // console.log(valueCopy);
+                    valueCopy[0] = valueCopy[0] + strNumber;
+                    console.log(valueCopy);
+                    setDisplayValues([...valueCopy]);
                 }
-            } else {
-                setDisplayValues([String(number)]);
-            }
 
+            } else {
+
+                if (lastValue.type == "operation") {
+
+                }
+                setDisplayValues([strNumber]);
+            }
 
         } else if (type == "operation") {
 
