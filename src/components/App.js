@@ -44,9 +44,8 @@ export default function App() {
                 if (displayValues.length == 1 && displayValues.includes(0)) {
                     setDisplayValues([String(number)]);
                 } else {
-                    if (displayValues.length == 1 && parseInt(lastValue).isNaNllllllc) {
 
-                    }
+
                     setDisplayValues([...displayValues, String(number)]);
                 }
             } else {
