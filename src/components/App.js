@@ -40,7 +40,7 @@ export default function App() {
 
         //const valueToConcat = 0;
         const valueCopy = Array.from(displayValues);
-        const lastValueIndex = arrayCopy[arrayCopy.length - 1];
+        const lastValueIndex = displayValues.length - 1;
         const strNumber = String(number);
         if (type == "digit") {
 
