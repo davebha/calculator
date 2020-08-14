@@ -41,7 +41,9 @@ export default function App() {
         //const valueToConcat = 0;
         const valueCopy = Array.from(displayValues);
         const lastValueIndex = displayValues.length - 1;
+        const displayValuesLastValue = displayValues[lastValueIndex];
         const strNumber = String(number);
+
         if (type == "digit") {
 
             if (displayValues.length == 1) {
@@ -63,13 +65,13 @@ export default function App() {
 
             } else {
 
-                if (parseInt(displayValues[lastValueIndex]) == 0) {
+                if (parseInt(displayValuesLastValue) == 0) {
 
                     valueCopy[lastValueIndex] = strNumber;
                     setDisplayValues([...valueCopy]);
                     console.log(displayValues);
 
-                } else if (parseInt(displayValues[lastValueIndex])) {
+                } else if (parseInt(displayValuesLastValue)) {
                     valueCopy[lastValueIndex] = valueCopy[lastValueIndex] + strNumber;
                     setDisplayValues([...valueCopy]);
                     console.log(displayValues);
