@@ -14,6 +14,11 @@ const DigitGrid = props => {
 
 };
 
+const GroupingGrid = props => {
+
+    return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{props.number}</button>;
+
+};
 const OperationGrid = props => {
 
     return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{OP_SIGN[props.number]}</button>;
@@ -121,7 +126,9 @@ export default function App() {
                     )
                 }
                 {
-
+                    utils.range(0, 1).map(number =>
+                        <GroupingGrid key={number} type="digit" number={number} onClick={handleClick} />
+                    )
 
                 }
                 {
