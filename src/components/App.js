@@ -85,8 +85,13 @@ export default function App() {
 
         } else if (type == "operation") {
 
+            if (parseInt(displayValuesLastValue)) {
 
-            setDisplayValues([...displayValues, OP_SIGN[number]]);
+                setDisplayValues([...displayValues, OP_SIGN[number]]);
+                console.log(displayValues);
+            }
+
+
         }
 
 
