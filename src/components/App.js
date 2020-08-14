@@ -57,13 +57,22 @@ export default function App() {
                 } else {
                     // console.log(valueCopy);
                     valueCopy[0] = valueCopy[0] + strNumber;
-                    console.log(valueCopy);
+                    //console.log(valueCopy);
                     setDisplayValues([...valueCopy]);
                 }
 
             } else {
 
 
+                if (parseInt(displayValues[lastValueIndex])) {
+                    valueCopy[lastValueIndex] = valueCopy[lastValueIndex] + strNumber;
+                    setDisplayValues([...valueCopy]);
+                    console.log(displayValues);
+                } else {
+
+                    setDisplayValues([...displayValues, strNumber]);
+                    console.log(displayValues);
+                }
 
             }
 
