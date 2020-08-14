@@ -4,6 +4,8 @@ import '../styles/index.css';
 
 const OP_SIGN = ["+", "-", "/", "*", "="];
 
+const GROUPING_SIGN = ["(", ")"];
+
 const DigitGrid = props => {
     //const componentType = props.type;
 
@@ -119,10 +121,16 @@ export default function App() {
                     )
                 }
                 {
+
+
+                }
+                {
                     utils.range(0, 4).map(number =>
                         <OperationGrid key={number} type="operation" number={number} onClick={handleClick} />
                     )
                 }
+
+
             </div>
 
         </div >
