@@ -63,8 +63,13 @@ export default function App() {
 
             } else {
 
+                if (parseInt(displayValues[lastValueIndex]) == 0) {
 
-                if (parseInt(displayValues[lastValueIndex])) {
+                    valueCopy[lastValueIndex] = strNumber;
+                    setDisplayValues([...valueCopy]);
+                    console.log(displayValues);
+
+                } else if (parseInt(displayValues[lastValueIndex])) {
                     valueCopy[lastValueIndex] = valueCopy[lastValueIndex] + strNumber;
                     setDisplayValues([...valueCopy]);
                     console.log(displayValues);
