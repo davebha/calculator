@@ -10,24 +10,24 @@ const GROUPING_SIGN = ["(", ")"];
 
 const displayValues = [];
 
-const DigitGrid = props => {
+const Grid = props => {
     //const componentType = props.type;
 
     //console.log("inside digitgrid: " + props.number);
-    return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{props.number}</button>;
+    return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{output(props.number, props.type)}</button>;
 
 };
 
-const GroupingGrid = props => {
+// const GroupingGrid = props => {
 
-    return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{GROUPING_SIGN[props.number]}</button>;
+//     return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{GROUPING_SIGN[props.number]}</button>;
 
-};
-const OperationGrid = props => {
+// };
+// const OperationGrid = props => {
 
-    return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{OP_SIGN[props.number]}</button>;
+//     return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{OP_SIGN[props.number]}</button>;
 
-};
+// };
 
 const output = (number, type) => {
 
@@ -173,18 +173,18 @@ export default function App() {
 
                 {
                     utils.range(0, 9).map(number =>
-                        <DigitGrid key={number} type="digit" number={number} onClick={handleClick} />
+                        <Grid key={number} type="digit" number={number} onClick={handleClick} />
                     )
                 }
                 {
                     utils.range(0, 1).map(number =>
-                        <GroupingGrid key={number} type="grouping" number={number} onClick={handleClick} />
+                        <Grid key={number} type="grouping" number={number} onClick={handleClick} />
                     )
 
                 }
                 {
                     utils.range(0, 4).map(number =>
-                        <OperationGrid key={number} type="operation" number={number} onClick={handleClick} />
+                        <Grid key={number} type="operation" number={number} onClick={handleClick} />
                     )
                 }
 
