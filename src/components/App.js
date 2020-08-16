@@ -11,23 +11,9 @@ const GROUPING_SIGN = ["(", ")"];
 const displayValues = [];
 
 const Grid = props => {
-    //const componentType = props.type;
-
-    //console.log("inside digitgrid: " + props.number);
     return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{output(props.number, props.type)}</button>;
 
 };
-
-// const GroupingGrid = props => {
-
-//     return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{GROUPING_SIGN[props.number]}</button>;
-
-// };
-// const OperationGrid = props => {
-
-//     return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{OP_SIGN[props.number]}</button>;
-
-// };
 
 const output = (number, type) => {
 
@@ -40,7 +26,6 @@ const output = (number, type) => {
     }
 
 }
-
 
 const Display = props => {
 
@@ -158,12 +143,10 @@ export default function App() {
 
     return (
         <div className="body">
-            This is a sample stateful and server-side
-            rendered React application.
+            <h2>Sample calculator application.</h2>
             <br />
             <br />
-      Here is a button that will track
-      how many times you click it:
+
             <br />
             <br />
             <div className="top-box">
@@ -187,7 +170,6 @@ export default function App() {
                         <Grid key={number} type="operation" number={number} onClick={handleClick} />
                     )
                 }
-
 
             </div>
 
