@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import utils from './utils';
 import '../styles/index.css';
 
+
+
 const OP_SIGN = ["+", "-", "/", "*", "="];
 
 const GROUPING_SIGN = ["(", ")"];
+
+const displayValues = [];
 
 const DigitGrid = props => {
     //const componentType = props.type;
@@ -16,7 +20,7 @@ const DigitGrid = props => {
 
 const GroupingGrid = props => {
 
-    return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{props.number}</button>;
+    return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{GROUPING_SIGN[props.number]}</button>;
 
 };
 const OperationGrid = props => {
@@ -25,7 +29,17 @@ const OperationGrid = props => {
 
 };
 
-const displayValues = [0];
+const output = (number, type) => {
+
+    if (type == "digit") {
+        return number;
+    } else if (type == "grouping") {
+        return GROUPING_SIGN[number];
+    } else if (type == "operation") {
+        return OP_SIGN[number];
+    }
+
+}
 
 
 const Display = props => {
@@ -63,12 +77,17 @@ export default function App() {
 
                     }
 
+                } else if (displayValues.includes("(")) {
+
+                    setDisplayValues([...displayValues, strNumber]);
+
                 } else {
                     // console.log(valueCopy);
                     valueCopy[0] = valueCopy[0] + strNumber;
-                    //console.log(valueCopy);
+                    console.log(valueCopy);
                     setDisplayValues([...valueCopy]);
                 }
+
 
             } else {
 
@@ -78,7 +97,14 @@ export default function App() {
                     setDisplayValues([...valueCopy]);
                     console.log(displayValues);
 
+                } else if (displayValuesLastValue == ")") {
+
+                    valueCopy[lastValueIndex] = "*";
+                    setDisplayValues([...displayValues, valueCopy[lastValueIndex], strNumber]);
+
+
                 } else if (parseInt(displayValuesLastValue)) {
+
                     valueCopy[lastValueIndex] = valueCopy[lastValueIndex] + strNumber;
                     setDisplayValues([...valueCopy]);
                     console.log(displayValues);
@@ -86,17 +112,42 @@ export default function App() {
 
                     setDisplayValues([...displayValues, strNumber]);
                     console.log(displayValues);
+
+
                 }
 
             }
 
         } else if (type == "operation") {
 
-            if (parseInt(displayValuesLastValue)) {
+            if (parseInt(displayValuesLastValue) >= 0 || displayValuesLastValue === ")") {
 
                 setDisplayValues([...displayValues, OP_SIGN[number]]);
                 console.log(displayValues);
             }
+
+
+        } else if (type == "grouping") {
+
+            if (parseInt(displayValuesLastValue) == 0) {
+
+                valueCopy[lastValueIndex] = GROUPING_SIGN[number];
+                setDisplayValues([...valueCopy]);
+
+            } else if (parseInt(displayValuesLastValue) && number == 0) {
+
+
+                valueCopy[lastValueIndex] = "*";
+                setDisplayValues([...displayValues, valueCopy[lastValueIndex], GROUPING_SIGN[number]]);
+
+
+
+
+            } else {
+
+                setDisplayValues([...displayValues, GROUPING_SIGN[number]]);
+            }
+
 
 
         }
@@ -127,7 +178,7 @@ export default function App() {
                 }
                 {
                     utils.range(0, 1).map(number =>
-                        <GroupingGrid key={number} type="digit" number={number} onClick={handleClick} />
+                        <GroupingGrid key={number} type="grouping" number={number} onClick={handleClick} />
                     )
 
                 }
