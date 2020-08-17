@@ -4,17 +4,21 @@ import '../styles/index.css';
 
 
 
-const OP_SIGN = ["+", "-", "/", "*", "="];
+const OP_SIGN = ["+", "-", "/", "*"];
 
 const GROUPING_SIGN = ["(", ")"];
 
-const displayValues = [];
+//const displayValues = [];
 
 const Grid = props => {
     return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{output(props.number, props.type)}</button>;
 
 };
 
+const Equals = props => {
+
+    return <button className="grid" onClick={() => props.onClick(props.displayValues)}>{"="}</button>;
+}
 const output = (number, type) => {
 
     if (type == "digit") {
@@ -121,13 +125,8 @@ export default function App() {
 
             } else if (parseInt(displayValuesLastValue) && number == 0) {
 
-
                 valueCopy[lastValueIndex] = "*";
                 setDisplayValues([...displayValues, valueCopy[lastValueIndex], GROUPING_SIGN[number]]);
-
-
-
-
             } else {
 
                 setDisplayValues([...displayValues, GROUPING_SIGN[number]]);
@@ -140,6 +139,16 @@ export default function App() {
 
 
     };
+
+    const Calculate = (valuesToCalculate) => {
+
+
+        console.log("In calculate");
+
+
+
+    }
+
 
     return (
         <div className="body">
@@ -166,9 +175,12 @@ export default function App() {
 
                 }
                 {
-                    utils.range(0, 4).map(number =>
+                    utils.range(0, 3).map(number =>
                         <Grid key={number} type="operation" number={number} onClick={handleClick} />
                     )
+                }
+                {
+                    <Equals onClick={Calculate}>=</Equals>
                 }
 
             </div>
