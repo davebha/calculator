@@ -4,7 +4,7 @@ import '../styles/index.css';
 
 
 
-const OP_SIGN = ["+", "-", "/", "*"];
+const OP_SIGN = ["/", "*", "+", "-"];
 
 const GROUPING_SIGN = ["(", ")"];
 
