@@ -142,11 +142,15 @@ export default function App() {
 
     const Calculate = (valuesToCalculate) => {
 
-        const second_operand = valuesToCalculate[2];
+
+
         const arr_length = valuesToCalculate.length;
         const result = valuesToCalculate[0];
-        const operationIndex = counter + 1;
+        const operationIndex = 1;
         const operation = valuesToCalculate[operationIndex];
+        const secondOperandIndex = operationIndex + 2;
+        const secondOperand = valuesToCalculate[secondOperandIndex];
+
 
 
         console.log("In calculate");
