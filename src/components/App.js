@@ -147,7 +147,8 @@ export default function App() {
         const arr_length = valuesToCalculate.length;
         var result = valuesToCalculate[0];
         var operationIndex = 1;
-        var operation = valuesToCalculate[operationIndex];
+        var operation = 0;
+
         var secondOperandIndex = operationIndex + 1;
         var secondOperand = valuesToCalculate[secondOperandIndex];
 
@@ -161,20 +162,25 @@ export default function App() {
         }
         while (secondOperandIndex < arr_length) {
 
+            operation = valuesToCalculate[operationIndex];
+            console.log("Operation to do is: " + operation);
+            //console.log("second operand is ")
 
             switch (operation) {
 
                 case "/":
                     console.log("In division");
+
+                    break;
                 case "*":
                     console.log("In multiplication");
-
+                    break;
                 case "+":
                     console.log("In addition");
-
+                    break;
                 case "-":
                     console.log("In subtraction");
-
+                    break;
             }
             operationIndex += 2;
             secondOperandIndex += 2;
