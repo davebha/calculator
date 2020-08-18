@@ -155,7 +155,7 @@ export default function App() {
         if (arr_length == 1) {
             return result;
         }
-        while (operationIndex != arr_length) {
+        while (operationIndex + 2 < arr_length) {
 
 
             switch (operation) {
@@ -170,14 +170,8 @@ export default function App() {
                     console.log("In subtraction");
 
             }
-
-            if (operationIndex + 2 != arr_length) {
-                operationIndex += 2;
-                second_operand += 2;
-
-            }
-
-
+            operationIndex += 2;
+            second_operand += 2;
         }
 
 
