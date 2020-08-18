@@ -142,7 +142,7 @@ export default function App() {
 
     const Calculate = (valuesToCalculate) => {
 
-        const counter = 0;
+        const second_operand = valuesToCalculate[2];
         const arr_length = valuesToCalculate.length;
         const result = valuesToCalculate[0];
         const operationIndex = counter + 1;
@@ -155,25 +155,30 @@ export default function App() {
         if (arr_length == 1) {
             return result;
         }
-        // while (counter != arr_length) {
-
-        //     switch (operation) {
-
-        //         case "/":
-        //             console.log("In division");
-        //         case "*":
-        //             console.log("In multiplication");
-        //         case "+":
-        //             console.log("In addition");
-        //         case "-":
-        //             console.log("In subtraction");
-
-        //     }
+        while (operationIndex != arr_length) {
 
 
+            switch (operation) {
+
+                case "/":
+                    console.log("In division");
+                case "*":
+                    console.log("In multiplication");
+                case "+":
+                    console.log("In addition");
+                case "-":
+                    console.log("In subtraction");
+
+            }
+
+            if (operationIndex + 2 != arr_length) {
+                operationIndex += 2;
+                second_operand += 2;
+
+            }
 
 
-        // }
+        }
 
 
 
