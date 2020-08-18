@@ -17,7 +17,7 @@ const Grid = props => {
 
 const Equals = props => {
 
-    return <button className="grid" onClick={() => props.onClick(props.displayValues)}>{"="}</button>;
+    return <button className="grid" onClick={() => props.onClick(props.valueToOperate)}>{"="}</button>;
 }
 const output = (number, type) => {
 
@@ -142,8 +142,38 @@ export default function App() {
 
     const Calculate = (valuesToCalculate) => {
 
+        const counter = 0;
+        const arr_length = valuesToCalculate.length;
+        const result = valuesToCalculate[0];
+        const operationIndex = counter + 1;
+        const operation = valuesToCalculate[operationIndex];
+
 
         console.log("In calculate");
+        console.log(valuesToCalculate);
+
+        if (arr_length == 1) {
+            return result;
+        }
+        // while (counter != arr_length) {
+
+        //     switch (operation) {
+
+        //         case "/":
+        //             console.log("In division");
+        //         case "*":
+        //             console.log("In multiplication");
+        //         case "+":
+        //             console.log("In addition");
+        //         case "-":
+        //             console.log("In subtraction");
+
+        //     }
+
+
+
+
+        // }
 
 
 
@@ -180,7 +210,7 @@ export default function App() {
                     )
                 }
                 {
-                    <Equals onClick={Calculate}>=</Equals>
+                    <Equals valueToOperate={displayValues} onClick={Calculate} />
                 }
 
             </div>
