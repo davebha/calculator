@@ -15,6 +15,9 @@ const Grid = props => {
 
 };
 
+const Clear = props => {
+    return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{"C"}</button>
+};
 const Equals = props => {
 
     return <button className="grid" onClick={() => props.onClick(props.valueToOperate)}>{"="}</button>;
@@ -134,8 +137,14 @@ export default function App() {
 
 
 
+        } else if (type == "clear") {
+
+            //valueCopy = [];
+            setDisplayValues(["0"]);
+
         }
 
+        console.log(displayValues);
 
 
     };
@@ -150,7 +159,6 @@ export default function App() {
         var operation = 0;
         var secondOperandIndex = operationIndex + 1;
         var secondOperand = 0;
-
         console.log("In calculate");
         console.log(valuesToCalculate);
 
@@ -220,6 +228,9 @@ export default function App() {
                     utils.range(0, 3).map(number =>
                         <Grid key={number} type="operation" number={number} onClick={handleClick} />
                     )
+                }
+                {
+                    <Clear type="clear" onClick={handleClick} />
                 }
                 {
                     <Equals valueToOperate={displayValues} onClick={Calculate} />
