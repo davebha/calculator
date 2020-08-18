@@ -150,6 +150,7 @@ export default function App() {
         var operation = 0;
         var secondOperandIndex = operationIndex + 1;
         var secondOperand = 0;
+
         console.log("In calculate");
         console.log(valuesToCalculate);
 
@@ -166,7 +167,6 @@ export default function App() {
                 switch (operation) {
 
                     case "/":
-
                         result = result / secondOperand;
                         break;
                     case "*":
@@ -187,7 +187,7 @@ export default function App() {
         }
 
         console.log("result is " + result);
-
+        setDisplayValues([result]);
 
     }
 
