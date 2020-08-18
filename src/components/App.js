@@ -145,47 +145,48 @@ export default function App() {
 
 
         const arr_length = valuesToCalculate.length;
-        var result = valuesToCalculate[0];
+        var result = parseInt(valuesToCalculate[0]);
         var operationIndex = 1;
         var operation = 0;
-
         var secondOperandIndex = operationIndex + 1;
-        var secondOperand = valuesToCalculate[secondOperandIndex];
-
-
-
+        var secondOperand = 0;
         console.log("In calculate");
         console.log(valuesToCalculate);
 
-        if (arr_length == 1) {
-            return result;
-        }
-        while (secondOperandIndex < arr_length) {
+        if (arr_length != 1) {
 
-            operation = valuesToCalculate[operationIndex];
-            console.log("Operation to do is: " + operation);
-            //console.log("second operand is ")
+            while (secondOperandIndex < arr_length) {
 
-            switch (operation) {
 
-                case "/":
-                    console.log("In division");
+                operation = valuesToCalculate[operationIndex];
+                secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
+                console.log("Operation to do is: " + operation);
+                console.log("second operand is: " + secondOperand);
 
-                    break;
-                case "*":
-                    console.log("In multiplication");
-                    break;
-                case "+":
-                    console.log("In addition");
-                    break;
-                case "-":
-                    console.log("In subtraction");
-                    break;
+                switch (operation) {
+
+                    case "/":
+
+                        result = result / secondOperand;
+                        break;
+                    case "*":
+                        result = result * secondOperand;
+                        break;
+                    case "+":
+                        result = result + secondOperand;
+                        break;
+                    case "-":
+                        result = result - secondOperand;
+                        break;
+                }
+                console.log("Result right now is: " + result);
+                operationIndex += 2;
+                secondOperandIndex += 2;
             }
-            operationIndex += 2;
-            secondOperandIndex += 2;
+
         }
 
+        console.log("result is " + result);
 
 
     }
