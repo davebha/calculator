@@ -175,7 +175,7 @@ export default function App() {
 
             }
             operationIndex += 2;
-            second_operand += 2;
+            secondOperandIndex += 2;
         }
 
 
