@@ -15,6 +15,9 @@ const Grid = props => {
 
 };
 
+const Clear = props => {
+    return <button className="grid" onClick={() => props.onClick(props.number, props.type)}>{"C"}</button>
+};
 const Equals = props => {
 
     return <button className="grid" onClick={() => props.onClick(props.valueToOperate)}>{"="}</button>;
@@ -134,8 +137,14 @@ export default function App() {
 
 
 
+        } else if (type == "clear") {
+
+            //valueCopy = [];
+            setDisplayValues(["0"]);
+
         }
 
+        console.log(displayValues);
 
 
     };
@@ -150,7 +159,6 @@ export default function App() {
         var operation = 0;
         var secondOperandIndex = operationIndex + 1;
         var secondOperand = 0;
-
         console.log("In calculate");
         console.log(valuesToCalculate);
 
@@ -205,26 +213,45 @@ export default function App() {
             </div>
             <div className="bottom-box">
 
+                {/* {
+                    utils.range(0, 3).map(number =>
+                        <Grid key={number} type="operation" number={number} onClick={handleClick} />
+                    )
+                }  */}
                 {
-                    utils.range(0, 9).map(number =>
+                    utils.range(7, 9).map(number =>
                         <Grid key={number} type="digit" number={number} onClick={handleClick} />
                     )
                 }
+                {<Grid key={0} type="operation" number={0} onClick={handleClick} />}
+
+                {
+                    utils.range(4, 6).map(number =>
+                        <Grid key={number} type="digit" number={number} onClick={handleClick} />
+                    )
+                }
+                {<Grid key={1} type="operation" number={1} onClick={handleClick} />}
+                {
+                    utils.range(1, 3).map(number =>
+                        <Grid key={number} type="digit" number={number} onClick={handleClick} />
+                    )
+                }
+                {<Grid key={2} type="operation" number={2} onClick={handleClick} />}
+                {
+                    <Equals valueToOperate={displayValues} onClick={Calculate} />
+                }
+                {
+                    <Grid key={0} type="digit" number={0} onClick={handleClick} />
+                }
+                {
+                    <Clear type="clear" onClick={handleClick} />
+                }
+                {<Grid key={3} type="operation" number={3} onClick={handleClick} />}
                 {
                     utils.range(0, 1).map(number =>
                         <Grid key={number} type="grouping" number={number} onClick={handleClick} />
                     )
-
                 }
-                {
-                    utils.range(0, 3).map(number =>
-                        <Grid key={number} type="operation" number={number} onClick={handleClick} />
-                    )
-                }
-                {
-                    <Equals valueToOperate={displayValues} onClick={Calculate} />
-                }
-
             </div>
 
         </div >
