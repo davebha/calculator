@@ -154,7 +154,8 @@ export default function App() {
 
 
         const arr_length = valuesToCalculate.length;
-        var result = parseInt(valuesToCalculate[0]);
+        var operationsResults = [parseInt(valuesToCalculate[0]), 0];
+        var result = 0;
         var operationIndex = 1;
         var operation = 0;
         var secondOperandIndex = operationIndex + 1;
@@ -164,31 +165,68 @@ export default function App() {
 
         if (arr_length != 1) {
 
-            while (secondOperandIndex < arr_length) {
-                operation = valuesToCalculate[operationIndex];
-                secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
-                console.log("Operation to do is: " + operation);
-                console.log("second operand is: " + secondOperand);
+            if (valuesToCalculate.includes("/") || valuesToCalculate("*")) {
 
-                switch (operation) {
+                while (secondOperandIndex < arr_length) {
+                    operation = valuesToCalculate[operationIndex];
+                    secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
+                    console.log("Operation to do is: " + operation);
+                    console.log("second operand is: " + secondOperand);
 
-                    case "/":
-                        result = result / secondOperand;
-                        break;
-                    case "*":
-                        result = result * secondOperand;
-                        break;
-                    case "+":
-                        result = result + secondOperand;
-                        break;
-                    case "-":
-                        result = result - secondOperand;
-                        break;
+                    switch (operation) {
+
+                        case "/":
+
+                            result = result / secondOperand;
+                            break;
+
+                        case "*":
+                            result = result * secondOperand;
+                            break;
+
+
+                    }
+                    console.log("Result right now is: " + result);
+                    operationIndex += 2;
+                    secondOperandIndex += 2;
+
                 }
-                console.log("Result right now is: " + result);
-                operationIndex += 2;
-                secondOperandIndex += 2;
+            } else if (valuesToCalculate.includes("+") || valuesToCalculate.includes("-")) {
+
+                while (secondOperandIndex < arr_length) {
+                    operation = valuesToCalculate[operationIndex];
+                    secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
+                    console.log("Operation to do is: " + operation);
+                    console.log("second operand is: " + secondOperand);
+
+                    switch (operation) {
+
+                        case "+":
+
+                            result = result + secondOperand;
+                            break;
+
+                        case "-":
+                            result = result - secondOperand;
+                            break;
+
+
+                    }
+                    console.log("Result right now is: " + result);
+                    operationIndex += 2;
+                    secondOperandIndex += 2;
+
+                }
+
+
+
             }
+
+
+
+
+
+
 
         }
 
@@ -216,7 +254,7 @@ export default function App() {
                         <Grid key={number} type="digit" number={number} onClick={handleClick} />
                     )
                 }
-                {<Grid key={0} type="operation" number={0} onClick={handleClick} />}
+                {<Grid type="operation" number={0} onClick={handleClick} />}
 
                 {
                     utils.range(4, 6).map(number =>
