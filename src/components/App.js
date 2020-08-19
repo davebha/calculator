@@ -165,8 +165,6 @@ export default function App() {
         if (arr_length != 1) {
 
             while (secondOperandIndex < arr_length) {
-
-
                 operation = valuesToCalculate[operationIndex];
                 secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
                 console.log("Operation to do is: " + operation);
@@ -213,11 +211,6 @@ export default function App() {
             </div>
             <div className="bottom-box">
 
-                {/* {
-                    utils.range(0, 3).map(number =>
-                        <Grid key={number} type="operation" number={number} onClick={handleClick} />
-                    )
-                }  */}
                 {
                     utils.range(7, 9).map(number =>
                         <Grid key={number} type="digit" number={number} onClick={handleClick} />
