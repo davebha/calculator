@@ -157,7 +157,6 @@ export default function App() {
         //var operationsResults = [parseInt(valuesToCalculate[0]), 0, 0, 0];
         var arrayAsCalculation = [];
         var firstOperandIndex = 0;
-        var additionSubtractionArray = [];
         var operationIndex = firstOperandIndex + 1;
         var operation = 0;
         var secondOperandIndex = operationIndex + 1;
@@ -188,15 +187,14 @@ export default function App() {
                     console.log("Operation to do is: " + operation);
                     console.log("second operand is: " + secondOperand);
 
-                    if (operation != "/" ||
-                        operation != "*") {
+                    if (operation != "/" || operation != "*") {
 
                         arrayAsCalculation.push(firstOperand);
                         arrayAsCalculation.push(operation);
                         arrayAsCalculation.push(secondOperand);
                     }
 
-                    while ((operation == "/" || operation == "*") && secondOperandIndex < arr_length) {
+                    while ((operation == "/" || operation == "*") && parseInt(secondOperand)) {
 
                         switch (operation) {
 
@@ -209,73 +207,81 @@ export default function App() {
 
                         }
 
-                        if (arr_length - secondOperandIndex != 1) {
-                            firstOperand = result;
-                            operationIndex += 2;
-                            secondOperandIndex += 2;
-                            operation = valuesToCalculate[operationIndex];
-                            secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
-                            console.log("first operand is: " + firstOperand);
-                            console.log("Operation to do is: " + operation);
-                            console.log("second operand is: " + secondOperand);
-                        }
-                    }
+                        firstOperand = result;
+                        operationIndex += 2;
+                        secondOperandIndex += 2;
+                        operation = valuesToCalculate[operationIndex];
+                        secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
+                        // console.log("first operand is: " + firstOperand);
+                        // console.log("Operation to do is: " + operation);
+                        // console.log("second operand is: " + secondOperand);
 
+                    }
                     console.log("Result right now is: " + result);
-                    if (arr_length - secondOperandIndex != 1) {
+                    if (secondOperandIndex < arr_length) {
                         firstOperandIndex += 2;
                         operationIndex += 2;
                         secondOperandIndex += 2;
                     }
                 }
 
-                if (valuesToCalculate.includes("+") || valuesToCalculate.includes("-")) {
-                    firstOperandIndex = 0;
-                    operationIndex = firstOperandIndex + 1;
-                    secondOperandIndex = operationIndex + 1;
+            }
 
-                    while (secondOperandIndex < arr_length) {
+            if (valuesToCalculate.includes("+") || valuesToCalculate.includes("-")) {
 
-                        if (firstOperandIndex > 0) {
-                            firstOperand = result;
+                if (arrayAsCalculation.length > 0) {
 
-                        }
-
-                        if (arrayAsCalculation != []) {
-
-                            if (firstOperandIndex < 0) {
-
-                                firstOperand = arrayAsCalculation[firstOperandIndex];
-
-                            }
-
-                            operation = arrayAsCalculation[operationIndex];
-                            secondOperand = parseInt(arrayAsCalculation[secondOperandIndex]);
-                            console.log("Operation to do is: " + operation);
-                            console.log("second operand is: " + secondOperand);
-
-                            switch (operation) {
-
-                                case "+":
-                                    result = firstOperand + secondOperand;
-
-                                    break;
-
-                                case "-":
-                                    result = firstOperand - secondOperand;
-                                    break;
-
-
-                            }
-                            console.log("Result right now is: " + result);
-                            operationIndex += 2;
-                            secondOperandIndex += 2;
-
-                        }
-
-                    }
 
                 }
+                while (secondOperandIndex < arr_length) {
+
+                }
+                //     firstOperandIndex = 0;
+                //     operationIndex = firstOperandIndex + 1;
+                //     secondOperandIndex = operationIndex + 1;
+
+                //     while (secondOperandIndex < arr_length) {
+
+                //         if (firstOperandIndex > 0) {
+                //             firstOperand = result;
+
+                //         }
+
+                //         if (arrayAsCalculation != []) {
+
+                //             if (firstOperandIndex < 0) {
+
+                //                 firstOperand = arrayAsCalculation[firstOperandIndex];
+
+                //             }
+
+                //             operation = arrayAsCalculation[operationIndex];
+                //             secondOperand = parseInt(arrayAsCalculation[secondOperandIndex]);
+                //             console.log("Operation to do is: " + operation);
+                //             console.log("second operand is: " + secondOperand);
+
+                //             switch (operation) {
+
+                //                 case "+":
+                //                     result = firstOperand + secondOperand;
+
+                //                     break;
+
+                //                 case "-":
+                //                     result = firstOperand - secondOperand;
+                //                     break;
+
+
+                //             }
+                //             console.log("Result right now is: " + result);
+                //             operationIndex += 2;
+                //             secondOperandIndex += 2;
+
+                //         }
+
+                //     }
+
+                //}
             }
 
             console.log("result is " + result);
