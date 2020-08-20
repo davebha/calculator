@@ -154,137 +154,185 @@ export default function App() {
 
 
         const arr_length = valuesToCalculate.length;
-        var operationsResults = [parseInt(valuesToCalculate[0]), 0];
-        var result = 0;
-        var operationIndex = 1;
+        //var operationsResults = [parseInt(valuesToCalculate[0]), 0, 0, 0];
+        var arrayAsCalculation = [];
+        var firstOperandIndex = 0;
+        var additionSubtractionArray = [];
+        var operationIndex = firstOperandIndex + 1;
         var operation = 0;
         var secondOperandIndex = operationIndex + 1;
+        var result = parseInt(valuesToCalculate[0]);
+        var firstOperand = 0;
         var secondOperand = 0;
+
+        var operationResultStatus = [false, false, false, false];
+
+
         console.log("In calculate");
         console.log(valuesToCalculate);
-
+        console.log("Array length is" + arr_length);
         if (arr_length != 1) {
 
-            if (valuesToCalculate.includes("/") || valuesToCalculate("*")) {
+            if (valuesToCalculate.includes("/") || valuesToCalculate.includes("*")) {
 
                 while (secondOperandIndex < arr_length) {
+                    if (operation != "/" || operation != "*") {
+                        firstOperand = parseInt(valuesToCalculate[firstOperandIndex]);
+                    } else {
+                        firstOperand = result;
+                    }
                     operation = valuesToCalculate[operationIndex];
                     secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
+
+                    console.log("first operand is: " + firstOperand);
                     console.log("Operation to do is: " + operation);
                     console.log("second operand is: " + secondOperand);
 
-                    switch (operation) {
+                    if (operation != "/" ||
+                        operation != "*") {
 
-                        case "/":
-
-                            result = result / secondOperand;
-                            break;
-
-                        case "*":
-                            result = result * secondOperand;
-                            break;
-
-
+                        arrayAsCalculation.push(firstOperand);
+                        arrayAsCalculation.push(operation);
+                        arrayAsCalculation.push(secondOperand);
                     }
-                    console.log("Result right now is: " + result);
-                    operationIndex += 2;
-                    secondOperandIndex += 2;
 
-                }
-            } else if (valuesToCalculate.includes("+") || valuesToCalculate.includes("-")) {
+                    while ((operation == "/" || operation == "*") && secondOperandIndex < arr_length) {
 
-                while (secondOperandIndex < arr_length) {
-                    operation = valuesToCalculate[operationIndex];
-                    secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
-                    console.log("Operation to do is: " + operation);
-                    console.log("second operand is: " + secondOperand);
+                        switch (operation) {
 
-                    switch (operation) {
+                            case "/":
+                                result = firstOperand / secondOperand;
+                                break;
+                            case "*":
+                                result = firstOperand * secondOperand;
+                                break;
 
-                        case "+":
+                        }
 
-                            result = result + secondOperand;
-                            break;
-
-                        case "-":
-                            result = result - secondOperand;
-                            break;
-
-
+                        if (arr_length - secondOperandIndex != 1) {
+                            firstOperand = result;
+                            operationIndex += 2;
+                            secondOperandIndex += 2;
+                            operation = valuesToCalculate[operationIndex];
+                            secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
+                            console.log("first operand is: " + firstOperand);
+                            console.log("Operation to do is: " + operation);
+                            console.log("second operand is: " + secondOperand);
+                        }
                     }
-                    console.log("Result right now is: " + result);
-                    operationIndex += 2;
-                    secondOperandIndex += 2;
 
+                    console.log("Result right now is: " + result);
+                    if (arr_length - secondOperandIndex != 1) {
+                        firstOperandIndex += 2;
+                        operationIndex += 2;
+                        secondOperandIndex += 2;
+                    }
                 }
 
+                if (valuesToCalculate.includes("+") || valuesToCalculate.includes("-")) {
+                    firstOperandIndex = 0;
+                    operationIndex = firstOperandIndex + 1;
+                    secondOperandIndex = operationIndex + 1;
+
+                    while (secondOperandIndex < arr_length) {
+
+                        if (firstOperandIndex > 0) {
+                            firstOperand = result;
+
+                        }
+
+                        if (arrayAsCalculation != []) {
+
+                            if (firstOperandIndex < 0) {
+
+                                firstOperand = arrayAsCalculation[firstOperandIndex];
+
+                            }
+
+                            operation = arrayAsCalculation[operationIndex];
+                            secondOperand = parseInt(arrayAsCalculation[secondOperandIndex]);
+                            console.log("Operation to do is: " + operation);
+                            console.log("second operand is: " + secondOperand);
+
+                            switch (operation) {
+
+                                case "+":
+                                    result = firstOperand + secondOperand;
+
+                                    break;
+
+                                case "-":
+                                    result = firstOperand - secondOperand;
+                                    break;
 
 
+                            }
+                            console.log("Result right now is: " + result);
+                            operationIndex += 2;
+                            secondOperandIndex += 2;
+
+                        }
+
+                    }
+
+                }
             }
 
-
-
-
-
-
+            console.log("result is " + result);
+            setDisplayValues([result]);
 
         }
 
-        console.log("result is " + result);
-        setDisplayValues([result]);
 
+        return (
+            <div className="body">
+                <h2>Sample calculator application.</h2>
+                <br />
+                <br />
+
+                <br />
+                <br />
+                <div className="top-box">
+                    <Display values={displayValues} />
+                </div>
+                <div className="bottom-box">
+
+                    {
+                        utils.range(7, 9).map(number =>
+                            <Grid key={number} type="digit" number={number} onClick={handleClick} />
+                        )
+                    }
+                    {<Grid type="operation" number={0} onClick={handleClick} />}
+
+                    {
+                        utils.range(4, 6).map(number =>
+                            <Grid key={number} type="digit" number={number} onClick={handleClick} />
+                        )
+                    }
+                    {<Grid key={1} type="operation" number={1} onClick={handleClick} />}
+                    {
+                        utils.range(1, 3).map(number =>
+                            <Grid key={number} type="digit" number={number} onClick={handleClick} />
+                        )
+                    }
+                    {<Grid key={2} type="operation" number={2} onClick={handleClick} />}
+                    {
+                        <Equals valueToOperate={displayValues} onClick={Calculate} />
+                    }
+                    {
+                        <Grid key={0} type="digit" number={0} onClick={handleClick} />
+                    }
+                    {
+                        <Clear type="clear" onClick={handleClick} />
+                    }
+                    {<Grid key={3} type="operation" number={3} onClick={handleClick} />}
+                    {
+                        utils.range(0, 1).map(number =>
+                            <Grid key={number} type="grouping" number={number} onClick={handleClick} />
+                        )
+                    }
+                </div>
+
+            </div >
+        );
     }
-
-
-    return (
-        <div className="body">
-            <h2>Sample calculator application.</h2>
-            <br />
-            <br />
-
-            <br />
-            <br />
-            <div className="top-box">
-                <Display values={displayValues} />
-            </div>
-            <div className="bottom-box">
-
-                {
-                    utils.range(7, 9).map(number =>
-                        <Grid key={number} type="digit" number={number} onClick={handleClick} />
-                    )
-                }
-                {<Grid type="operation" number={0} onClick={handleClick} />}
-
-                {
-                    utils.range(4, 6).map(number =>
-                        <Grid key={number} type="digit" number={number} onClick={handleClick} />
-                    )
-                }
-                {<Grid key={1} type="operation" number={1} onClick={handleClick} />}
-                {
-                    utils.range(1, 3).map(number =>
-                        <Grid key={number} type="digit" number={number} onClick={handleClick} />
-                    )
-                }
-                {<Grid key={2} type="operation" number={2} onClick={handleClick} />}
-                {
-                    <Equals valueToOperate={displayValues} onClick={Calculate} />
-                }
-                {
-                    <Grid key={0} type="digit" number={0} onClick={handleClick} />
-                }
-                {
-                    <Clear type="clear" onClick={handleClick} />
-                }
-                {<Grid key={3} type="operation" number={3} onClick={handleClick} />}
-                {
-                    utils.range(0, 1).map(number =>
-                        <Grid key={number} type="grouping" number={number} onClick={handleClick} />
-                    )
-                }
-            </div>
-
-        </div >
-    );
-}
