@@ -163,7 +163,7 @@ export default function App() {
         var result = 0;
         var firstOperand = 0;
         var secondOperand = 0;
-
+        var didMultiplicationDivision = false;
         var operationResultStatus = [false, false, false, false];
 
 
@@ -174,7 +174,7 @@ export default function App() {
 
             if (valuesToCalculate.includes("/") || valuesToCalculate.includes("*")) {
 
-                while (secondOperandIndex < arr_length) {
+                while (arr_length - secondOperandIndex != 1) {
 
 
                     firstOperand = parseInt(valuesToCalculate[firstOperandIndex]);
@@ -190,7 +190,7 @@ export default function App() {
                         arrayAsCalculation.push(firstOperand);
                         arrayAsCalculation.push(operation);
                         if ((valuesToCalculate[secondOperandIndex + 1] != "/" && valuesToCalculate[secondOperandIndex + 1] != "*")
-                            && valuesToCalculate[secondOperandIndex + 1] != undefined) {
+                        ) {
 
                             arrayAsCalculation.push(secondOperand);
 
@@ -212,30 +212,46 @@ export default function App() {
                         }
 
                         firstOperand = result;
+                        //firstOperandIndex += 2;
                         operationIndex += 2;
                         secondOperandIndex += 2;
                         operation = valuesToCalculate[operationIndex];
                         secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
-                        // console.log("first operand is: " + firstOperand);
-                        // console.log("Operation to do is: " + operation);
-                        // console.log("second operand is: " + secondOperand);
+
                     }
 
-                    if (arrayAsCalculation != [])) {
-                        arrayAsCalculation.push(result);
-                    }
+                    if (operandIndex - firstOperandIndex != 1)
+                        if (arrayAsCalculation != [] && result != 0) {
+                            arrayAsCalculation.push(result);
+                        }
 
                     console.log("Result right now is: " + result);
-                    if (secondOperandIndex < arr_length) {
-                        firstOperandIndex += 2;
-                        operationIndex += 2;
+
+
+                    if (arr_length - secondOperandIndex != 1 && (operationIndex - 2 == "/" || operationIndex - 2 == "*")) {
+                        arrayAsCalculation.push(operation);
+
+                        arrayAsCalculation.push(secondOperand);
+                        firstOperandIndex = secondOperandIndex;
                         secondOperandIndex += 2;
+                    } else {
+                        arrayAsCalculation.push(operation);
+                        arrayAsCalculation.push(secondOperand);
                     }
+
+                    console.log("first operand index is " + firstOperandIndex);
+
+                    console.log("operation index is " + operationIndex);
+
+                    console.log("second operand index is " + secondOperandIndex);
+
+                    console.log(arrayAsCalculation);
+
                 }
 
             }
-            console.log(arrayAsCalculation);
 
+            // console.log("second operand index is " + secondOperandIndex);
             // if (valuesToCalculate.includes("+") || valuesToCalculate.includes("-")) {
 
             //     if (arrayAsCalculation.length > 0) {
