@@ -160,7 +160,7 @@ export default function App() {
         var operationIndex = firstOperandIndex + 1;
         var operation = 0;
         var secondOperandIndex = operationIndex + 1;
-        var result = parseInt(valuesToCalculate[0]);
+        var result = 0;
         var firstOperand = 0;
         var secondOperand = 0;
 
@@ -175,11 +175,9 @@ export default function App() {
             if (valuesToCalculate.includes("/") || valuesToCalculate.includes("*")) {
 
                 while (secondOperandIndex < arr_length) {
-                    if (operation != "/" || operation != "*") {
-                        firstOperand = parseInt(valuesToCalculate[firstOperandIndex]);
-                    } else {
-                        firstOperand = result;
-                    }
+
+
+                    firstOperand = parseInt(valuesToCalculate[firstOperandIndex]);
                     operation = valuesToCalculate[operationIndex];
                     secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
 
@@ -223,7 +221,7 @@ export default function App() {
                         // console.log("second operand is: " + secondOperand);
                     }
 
-                    if (arrayAsCalculation != []) {
+                    if (arrayAsCalculation != [])) {
                         arrayAsCalculation.push(result);
                     }
 
