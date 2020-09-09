@@ -152,48 +152,194 @@ export default function App() {
     const Calculate = (valuesToCalculate) => {
 
 
-
-        const arr_length = valuesToCalculate.length;
-        var result = parseInt(valuesToCalculate[0]);
-        var operationIndex = 1;
+        const arr_counter = 0;
+        var arr_length = valuesToCalculate.length;
+        //var operationsResults = [parseInt(valuesToCalculate[0]), 0, 0, 0];
+        var arrayAsCalculation = [];
+        var valueCounter = 0;
+        var firstOperandIndex = 0;
+        var operationIndex = valueCounter + 1;
         var operation = 0;
         var secondOperandIndex = operationIndex + 1;
+        var result = 0;
+        var firstOperand = 0;
         var secondOperand = 0;
+
+        var operationInProgress = false;
+
+        firstOperand = 0;
+        secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
+        operation = valuesToCalculate[operationIndex];
+
         console.log("In calculate");
         console.log(valuesToCalculate);
-
+        console.log("Array length is" + arr_length);
         if (arr_length != 1) {
 
-            while (secondOperandIndex < arr_length) {
-                operation = valuesToCalculate[operationIndex];
-                secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
-                console.log("Operation to do is: " + operation);
-                console.log("second operand is: " + secondOperand);
+            if (valuesToCalculate.includes("/") || valuesToCalculate.includes("*")) {
 
-                switch (operation) {
+                while (valueCounter < arr_length) {
 
-                    case "/":
-                        result = result / secondOperand;
-                        break;
-                    case "*":
-                        result = result * secondOperand;
-                        break;
-                    case "+":
-                        result = result + secondOperand;
-                        break;
-                    case "-":
-                        result = result - secondOperand;
-                        break;
+                    //if (operation != "/" && operation != "*") {
+                    if (operation != "/" && operation != "*") {
+                        arrayAsCalculation.push(valuesToCalculate[valueCounter]);
+                        if (operationIndex < arr_length) {
+                            arrayAsCalculation.push(operation);
+                        }
+
+
+                        console.log(arrayAsCalculation);
+                    }
+
+                    while ((operation == "/" || operation == "*")) {
+
+                        if (operationInProgress == false) {
+                            //firstOperandIndex = counter;
+                            //operationIndex = valueCounter + 1;
+                            secondOperandIndex = operationIndex + 1;
+                            firstOperand = parseInt(valuesToCalculate[valueCounter]);
+                            secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
+
+                            operationInProgress = true;
+                        }
+
+                        switch (operation) {
+
+                            case "/":
+                                result = firstOperand / secondOperand;
+                                break;
+                            case "*":
+                                result = firstOperand * secondOperand;
+                                break;
+
+                        }
+
+
+                        if (secondOperandIndex < arr_length) {
+                            firstOperand = result;
+                            valueCounter += 2;
+                            operationIndex += 2;
+                            secondOperandIndex += 2;
+                            operation = valuesToCalculate[operationIndex];
+                            secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
+                        }
+
+                    }
+
+                    //if (operandIndex - firstOperandIndex != 1)
+                    //if (arrayAsCalculation != [] && result != 0) {
+
+                    if (operationInProgress == true) {
+
+                        if (operationIndex < arr_length) {
+                            arrayAsCalculation.push(result.toString());
+                            arrayAsCalculation.push(operation);
+                        } else if (operationIndex == arr_length) {
+
+                            arrayAsCalculation.push(result.toString());
+
+                        }
+                        valueCounter += 2;
+                        operationIndex += 2;
+                        operation = valuesToCalculate[operationIndex];
+
+                        operationInProgress = false;
+                    } else {
+
+
+                        valueCounter += 2;
+                        if (operationIndex < arr_length) {
+                            operationIndex += 2;
+                            operation = valuesToCalculate[operationIndex];
+                        }
+
+                    }
+
+
+
+                    console.log("Result right now is: " + result);
+                    console.log("Operation to do is: " + operation);
+                    console.log("second operand is: " + secondOperand);
+
+
+                    console.log("first operand index is " + firstOperandIndex);
+
+                    console.log("operation index is " + operationIndex);
+
+                    console.log("second operand index is " + secondOperandIndex);
+
+                    console.log(arrayAsCalculation);
+
                 }
-                console.log("Result right now is: " + result);
-                operationIndex += 2;
-                secondOperandIndex += 2;
+
             }
+
+
+
+            console.log("result is " + result);
+            //setDisplayValues([result.toString()]);
 
         }
 
-        console.log("result is " + result);
-        setDisplayValues([result]);
+
+        if (arrayAsCalculation.length != 0) {
+
+            arr_length = arrayAsCalculation.length;
+            firstOperandIndex = 0;
+            firstOperand = parseInt(arrayAsCalculation[firstOperandIndex]);
+            operationIndex = firstOperandIndex + 1;
+            operation = arrayAsCalculation[operationIndex];
+            secondOperandIndex = operationIndex + 1;
+            secondOperand = parseInt(arrayAsCalculation[secondOperandIndex]);
+            result = 0;
+
+            // console.log("first operand  is " + firstOperand);
+
+            // console.log("first operand index is " + firstOperandIndex);
+
+            // console.log("operation index is " + operationIndex);
+
+            // console.log("second operand index is " + secondOperandIndex);
+
+            // console.log("second operand  is " + secondOperand);
+
+            while (operationIndex < arr_length) {
+
+                if (operation == "+") {
+
+                    result = firstOperand + secondOperand;
+
+                } else {
+
+                    result = firstOperand - secondOperand;
+
+                }
+
+                if (operationIndex < arr_length) {
+
+                    firstOperand = result;
+                    operationIndex += 2;
+                    secondOperandIndex += 2;
+                    operation = arrayAsCalculation[operationIndex];
+                    secondOperand = parseInt(arrayAsCalculation[secondOperandIndex]);
+
+                }
+
+                // console.log("first operand  is " + firstOperand);
+
+                // console.log("first operand index is " + firstOperandIndex);
+
+                // console.log("operation index is " + operationIndex);
+
+                // console.log("second operand index is " + secondOperandIndex);
+
+                // console.log("second operand  is " + secondOperand);
+
+            }
+
+            console.log("result is " + result);
+            //setDisplayValues([result.toString()]);
+        }
 
     }
 
@@ -216,7 +362,7 @@ export default function App() {
                         <Grid key={number} type="digit" number={number} onClick={handleClick} />
                     )
                 }
-                {<Grid key={0} type="operation" number={0} onClick={handleClick} />}
+                {<Grid type="operation" number={0} onClick={handleClick} />}
 
                 {
                     utils.range(4, 6).map(number =>
