@@ -152,20 +152,24 @@ export default function App() {
     const Calculate = (valuesToCalculate) => {
 
 
-
+        const arr_counter = 0;
         const arr_length = valuesToCalculate.length;
         //var operationsResults = [parseInt(valuesToCalculate[0]), 0, 0, 0];
         var arrayAsCalculation = [];
+        var valueCounter = 0;
         var firstOperandIndex = 0;
-        var operationIndex = firstOperandIndex + 1;
+        var operationIndex = valueCounter + 1;
         var operation = 0;
         var secondOperandIndex = operationIndex + 1;
         var result = 0;
         var firstOperand = 0;
         var secondOperand = 0;
-        var didMultiplicationDivision = false;
-        var operationResultStatus = [false, false, false, false];
 
+        var operationInProgress = false;
+
+        firstOperand = 0;
+        secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
+        operation = valuesToCalculate[operationIndex];
 
         console.log("In calculate");
         console.log(valuesToCalculate);
@@ -174,31 +178,30 @@ export default function App() {
 
             if (valuesToCalculate.includes("/") || valuesToCalculate.includes("*")) {
 
-                while (arr_length - secondOperandIndex != 1) {
+                while (valueCounter < arr_length) {
 
-
-                    firstOperand = parseInt(valuesToCalculate[firstOperandIndex]);
-                    operation = valuesToCalculate[operationIndex];
-                    secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
-
-                    console.log("first operand is: " + firstOperand);
-                    console.log("Operation to do is: " + operation);
-                    console.log("second operand is: " + secondOperand);
-
+                    //if (operation != "/" && operation != "*") {
                     if (operation != "/" && operation != "*") {
-
-                        arrayAsCalculation.push(firstOperand);
-                        arrayAsCalculation.push(operation);
-                        if ((valuesToCalculate[secondOperandIndex + 1] != "/" && valuesToCalculate[secondOperandIndex + 1] != "*")
-                        ) {
-
-                            arrayAsCalculation.push(secondOperand);
-
+                        arrayAsCalculation.push(valuesToCalculate[valueCounter]);
+                        if (operationIndex < arr_length) {
+                            arrayAsCalculation.push(operation);
                         }
 
+
+                        console.log(arrayAsCalculation);
                     }
 
-                    while ((operation == "/" || operation == "*") && parseInt(secondOperand)) {
+                    while ((operation == "/" || operation == "*")) {
+
+                        if (operationInProgress == false) {
+                            //firstOperandIndex = counter;
+                            //operationIndex = valueCounter + 1;
+                            secondOperandIndex = operationIndex + 1;
+                            firstOperand = parseInt(valuesToCalculate[valueCounter]);
+                            secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
+
+                            operationInProgress = true;
+                        }
 
                         switch (operation) {
 
@@ -211,33 +214,58 @@ export default function App() {
 
                         }
 
-                        firstOperand = result;
-                        //firstOperandIndex += 2;
-                        operationIndex += 2;
-                        secondOperandIndex += 2;
-                        operation = valuesToCalculate[operationIndex];
-                        secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
 
-                    }
-
-                    if (operandIndex - firstOperandIndex != 1)
-                        if (arrayAsCalculation != [] && result != 0) {
-                            arrayAsCalculation.push(result);
+                        if (secondOperandIndex < arr_length) {
+                            firstOperand = result;
+                            valueCounter += 2;
+                            operationIndex += 2;
+                            secondOperandIndex += 2;
+                            operation = valuesToCalculate[operationIndex];
+                            secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
                         }
 
-                    console.log("Result right now is: " + result);
-
-
-                    if (arr_length - secondOperandIndex != 1 && (operationIndex - 2 == "/" || operationIndex - 2 == "*")) {
-                        arrayAsCalculation.push(operation);
-
-                        arrayAsCalculation.push(secondOperand);
-                        firstOperandIndex = secondOperandIndex;
-                        secondOperandIndex += 2;
-                    } else {
-                        arrayAsCalculation.push(operation);
-                        arrayAsCalculation.push(secondOperand);
                     }
+
+                    //if (operandIndex - firstOperandIndex != 1)
+                    //if (arrayAsCalculation != [] && result != 0) {
+
+                    if (operationInProgress == true) {
+
+                        if (operationIndex < arr_length) {
+                            arrayAsCalculation.push(result.toString());
+                            arrayAsCalculation.push(operation);
+                            valueCounter += 2;
+                            operationIndex += 2;
+                            operation = valuesToCalculate[operationIndex];
+                        }
+
+                        // else if (operationIndex == arr_length) {
+                        //     arrayAsCalculation.push(result.toString());
+                        // }
+
+                        /*
+                            else {
+                            arrayAsCalculation.push(valuesToCalculate[valueCounter]);
+                        }
+                        */
+                        operationInProgress = false;
+                    } else {
+
+
+                        valueCounter += 2;
+                        if (operationIndex < arr_length) {
+                            operationIndex += 2;
+                            operation = valuesToCalculate[operationIndex];
+                        }
+
+                    }
+
+
+
+                    console.log("Result right now is: " + result);
+                    console.log("Operation to do is: " + operation);
+                    console.log("second operand is: " + secondOperand);
+
 
                     console.log("first operand index is " + firstOperandIndex);
 
