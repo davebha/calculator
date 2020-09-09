@@ -234,20 +234,15 @@ export default function App() {
                         if (operationIndex < arr_length) {
                             arrayAsCalculation.push(result.toString());
                             arrayAsCalculation.push(operation);
-                            valueCounter += 2;
-                            operationIndex += 2;
-                            operation = valuesToCalculate[operationIndex];
-                        }
+                        } else if (operationIndex == arr_length) {
 
-                        // else if (operationIndex == arr_length) {
-                        //     arrayAsCalculation.push(result.toString());
-                        // }
+                            arrayAsCalculation.push(result.toString());
 
-                        /*
-                            else {
-                            arrayAsCalculation.push(valuesToCalculate[valueCounter]);
                         }
-                        */
+                        valueCounter += 2;
+                        operationIndex += 2;
+                        operation = valuesToCalculate[operationIndex];
+
                         operationInProgress = false;
                     } else {
 
