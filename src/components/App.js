@@ -151,8 +151,7 @@ export default function App() {
 
     const Calculate = (valuesToCalculate) => {
 
-
-        const arr_counter = 0;
+        //const arr_counter = 0;
         var arr_length = valuesToCalculate.length;
         //var operationsResults = [parseInt(valuesToCalculate[0]), 0, 0, 0];
         var arrayAsCalculation = [];
@@ -167,7 +166,7 @@ export default function App() {
 
         var operationInProgress = false;
 
-        firstOperand = 0;
+        //firstOperand = 0;
         secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
         operation = valuesToCalculate[operationIndex];
 
@@ -262,13 +261,75 @@ export default function App() {
                     console.log("second operand is: " + secondOperand);
 
 
-                    console.log("first operand index is " + firstOperandIndex);
 
-                    console.log("operation index is " + operationIndex);
+                }
 
+            } else if (valuesToCalculate.includes("+") || valuesToCalculate.includes("-")) {
+
+                firstOperand = parseInt(valuesToCalculate[firstOperandIndex]);
+                console.log("first operand is " + firstOperand);
+                while (operationIndex < arr_length) {
+
+                    if (operation == "+") {
+
+                        result = firstOperand + secondOperand;
+
+                    } else {
+
+                        result = firstOperand - secondOperand;
+
+                    }
+
+                    if (secondOperandIndex < arr_length) {
+
+                        firstOperand = result;
+                        operationIndex += 2;
+                        secondOperandIndex += 2;
+                        operation = valuesToCalculate[operationIndex];
+                        secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
+
+                    }
+
+                    console.log("first operand is " + firstOperand);
+                    console.log("Operation index is " + operationIndex);
                     console.log("second operand index is " + secondOperandIndex);
 
-                    console.log(arrayAsCalculation);
+                }
+
+            }
+
+            if (arrayAsCalculation.length != 0) {
+
+                arr_length = arrayAsCalculation.length;
+                firstOperandIndex = 0;
+                firstOperand = parseInt(arrayAsCalculation[firstOperandIndex]);
+                operationIndex = firstOperandIndex + 1;
+                operation = arrayAsCalculation[operationIndex];
+                secondOperandIndex = operationIndex + 1;
+                secondOperand = parseInt(arrayAsCalculation[secondOperandIndex]);
+
+
+                while (operationIndex < arr_length) {
+
+                    if (operation == "+") {
+
+                        result = firstOperand + secondOperand;
+
+                    } else {
+
+                        result = firstOperand - secondOperand;
+
+                    }
+
+                    if (operationIndex < arr_length) {
+
+                        firstOperand = result;
+                        operationIndex += 2;
+                        secondOperandIndex += 2;
+                        operation = arrayAsCalculation[operationIndex];
+                        secondOperand = parseInt(arrayAsCalculation[secondOperandIndex]);
+
+                    }
 
                 }
 
@@ -276,71 +337,9 @@ export default function App() {
 
 
 
-            console.log("result is " + result);
-            //setDisplayValues([result.toString()]);
-
         }
 
-
-        if (arrayAsCalculation.length != 0) {
-
-            arr_length = arrayAsCalculation.length;
-            firstOperandIndex = 0;
-            firstOperand = parseInt(arrayAsCalculation[firstOperandIndex]);
-            operationIndex = firstOperandIndex + 1;
-            operation = arrayAsCalculation[operationIndex];
-            secondOperandIndex = operationIndex + 1;
-            secondOperand = parseInt(arrayAsCalculation[secondOperandIndex]);
-            result = 0;
-
-            // console.log("first operand  is " + firstOperand);
-
-            // console.log("first operand index is " + firstOperandIndex);
-
-            // console.log("operation index is " + operationIndex);
-
-            // console.log("second operand index is " + secondOperandIndex);
-
-            // console.log("second operand  is " + secondOperand);
-
-            while (operationIndex < arr_length) {
-
-                if (operation == "+") {
-
-                    result = firstOperand + secondOperand;
-
-                } else {
-
-                    result = firstOperand - secondOperand;
-
-                }
-
-                if (operationIndex < arr_length) {
-
-                    firstOperand = result;
-                    operationIndex += 2;
-                    secondOperandIndex += 2;
-                    operation = arrayAsCalculation[operationIndex];
-                    secondOperand = parseInt(arrayAsCalculation[secondOperandIndex]);
-
-                }
-
-                // console.log("first operand  is " + firstOperand);
-
-                // console.log("first operand index is " + firstOperandIndex);
-
-                // console.log("operation index is " + operationIndex);
-
-                // console.log("second operand index is " + secondOperandIndex);
-
-                // console.log("second operand  is " + secondOperand);
-
-            }
-
-            console.log("result is " + result);
-            //setDisplayValues([result.toString()]);
-        }
-
+        setDisplayValues([result.toString()]);
     }
 
 
