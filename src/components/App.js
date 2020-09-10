@@ -151,9 +151,8 @@ export default function App() {
 
     const Calculate = (valuesToCalculate) => {
 
-        //const arr_counter = 0;
+
         var arr_length = valuesToCalculate.length;
-        //var operationsResults = [parseInt(valuesToCalculate[0]), 0, 0, 0];
         var arrayAsCalculation = [];
         var valueCounter = 0;
         var firstOperandIndex = 0;
@@ -163,43 +162,33 @@ export default function App() {
         var result = 0;
         var firstOperand = 0;
         var secondOperand = 0;
-
         var operationInProgress = false;
-
-        //firstOperand = 0;
         secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
         operation = valuesToCalculate[operationIndex];
 
-        console.log("In calculate");
-        console.log(valuesToCalculate);
-        console.log("Array length is" + arr_length);
         if (arr_length != 1) {
 
             if (valuesToCalculate.includes("/") || valuesToCalculate.includes("*")) {
 
                 while (valueCounter < arr_length) {
 
-                    //if (operation != "/" && operation != "*") {
                     if (operation != "/" && operation != "*") {
                         arrayAsCalculation.push(valuesToCalculate[valueCounter]);
                         if (operationIndex < arr_length) {
                             arrayAsCalculation.push(operation);
                         }
 
-
-                        console.log(arrayAsCalculation);
                     }
 
                     while ((operation == "/" || operation == "*")) {
 
                         if (operationInProgress == false) {
-                            //firstOperandIndex = counter;
-                            //operationIndex = valueCounter + 1;
+
                             secondOperandIndex = operationIndex + 1;
                             firstOperand = parseInt(valuesToCalculate[valueCounter]);
                             secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
-
                             operationInProgress = true;
+
                         }
 
                         switch (operation) {
@@ -225,8 +214,6 @@ export default function App() {
 
                     }
 
-                    //if (operandIndex - firstOperandIndex != 1)
-                    //if (arrayAsCalculation != [] && result != 0) {
 
                     if (operationInProgress == true) {
 
@@ -256,10 +243,6 @@ export default function App() {
 
 
 
-                    console.log("Result right now is: " + result);
-                    console.log("Operation to do is: " + operation);
-                    console.log("second operand is: " + secondOperand);
-
 
 
                 }
@@ -267,7 +250,7 @@ export default function App() {
             } else if (valuesToCalculate.includes("+") || valuesToCalculate.includes("-")) {
 
                 firstOperand = parseInt(valuesToCalculate[firstOperandIndex]);
-                console.log("first operand is " + firstOperand);
+
                 while (operationIndex < arr_length) {
 
                     if (operation == "+") {
@@ -289,10 +272,6 @@ export default function App() {
                         secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
 
                     }
-
-                    console.log("first operand is " + firstOperand);
-                    console.log("Operation index is " + operationIndex);
-                    console.log("second operand index is " + secondOperandIndex);
 
                 }
 
@@ -330,13 +309,8 @@ export default function App() {
                         secondOperand = parseInt(arrayAsCalculation[secondOperandIndex]);
 
                     }
-
                 }
-
             }
-
-
-
         }
 
         setDisplayValues([result.toString()]);
