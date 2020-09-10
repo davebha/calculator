@@ -157,14 +157,14 @@ export default function App() {
         var valueCounter = 0;
         var firstOperandIndex = 0;
         var operationIndex = valueCounter + 1;
-        var operation = 0;
         var secondOperandIndex = operationIndex + 1;
         var result = 0;
         var firstOperand = 0;
-        var secondOperand = 0;
+        var secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
+        var operation = valuesToCalculate[operationIndex];
         var operationInProgress = false;
-        secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
-        operation = valuesToCalculate[operationIndex];
+
+
 
         if (arr_length != 1) {
 
@@ -177,7 +177,7 @@ export default function App() {
                         if (operationIndex < arr_length) {
                             arrayAsCalculation.push(operation);
                         }
-
+                        console.log(arrayAsCalculation);
                     }
 
                     while ((operation == "/" || operation == "*")) {
@@ -215,36 +215,36 @@ export default function App() {
                     }
 
 
-                    if (operationInProgress == true) {
 
-                        if (operationIndex < arr_length) {
-                            arrayAsCalculation.push(result.toString());
-                            arrayAsCalculation.push(operation);
-                        } else if (operationIndex == arr_length) {
+                    switch (operationInProgress) {
+                        case true:
+                            if (operationIndex < arr_length) {
+                                arrayAsCalculation.push(result.toString());
+                                arrayAsCalculation.push(operation);
+                            } else if (operationIndex == arr_length) {
 
-                            arrayAsCalculation.push(result.toString());
+                                arrayAsCalculation.push(result.toString());
 
-                        }
-                        valueCounter += 2;
-                        operationIndex += 2;
-                        operation = valuesToCalculate[operationIndex];
-
-                        operationInProgress = false;
-                    } else {
-
-
-                        valueCounter += 2;
-                        if (operationIndex < arr_length) {
+                            }
+                            valueCounter += 2;
                             operationIndex += 2;
                             operation = valuesToCalculate[operationIndex];
-                        }
 
+                            operationInProgress = false;
+                            break;
+
+                        case false:
+                            valueCounter += 2;
+                            if (operationIndex < arr_length) {
+                                operationIndex += 2;
+                                operation = valuesToCalculate[operationIndex];
+                            }
+                            break;
                     }
 
-
-
-
-
+                    console.log("Result right now is: " + result);
+                    console.log("Operation to do is: " + operation);
+                    console.log("second operand is: " + secondOperand);
                 }
 
             } else if (valuesToCalculate.includes("+") || valuesToCalculate.includes("-")) {
