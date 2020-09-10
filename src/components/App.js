@@ -151,24 +151,21 @@ export default function App() {
 
     const Calculate = (valuesToCalculate) => {
 
-        //const arr_counter = 0;
+
+
         var arr_length = valuesToCalculate.length;
-        //var operationsResults = [parseInt(valuesToCalculate[0]), 0, 0, 0];
         var arrayAsCalculation = [];
         var valueCounter = 0;
         var firstOperandIndex = 0;
         var operationIndex = valueCounter + 1;
-        var operation = 0;
         var secondOperandIndex = operationIndex + 1;
         var result = 0;
         var firstOperand = 0;
-        var secondOperand = 0;
-
+        var secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
+        var operation = valuesToCalculate[operationIndex];
         var operationInProgress = false;
 
-        //firstOperand = 0;
-        secondOperand = parseInt(valuesToCalculate[secondOperandIndex]);
-        operation = valuesToCalculate[operationIndex];
+
 
         console.log("In calculate");
         console.log(valuesToCalculate);
